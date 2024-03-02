@@ -216,9 +216,9 @@ BEGIN
 				LEAVE read_loop;
 			END IF;
 			IF (C_A <= C_B AND C_A <= C_C) THEN
-				SET C_SUM = C_C+C_B;
+				SET C_SUM = C_C + C_B;
 			ELSEIF (C_B <= C_A AND C_B <= C_C) THEN
-				SET C_SUM = C_A+C_C;
+				SET C_SUM = C_A + C_C;
 			ELSE 
 				SET C_SUM = C_A + C_B;
 			END IF;
