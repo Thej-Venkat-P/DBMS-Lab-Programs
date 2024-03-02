@@ -12,7 +12,7 @@ c. List  all  actors  who  acted  in  a  movie  before  2000  and  also  in  a  
 d. Find  the  title  of movies and  number  of  stars  for  each  movie  that  has  at  least  one  rating and find the highest number of stars that movie received. Sort the result by movie title. 
 e. Update rating of all movies directed by „Steven Spielberg‟ to 5. 
 */
-
+ 
 -- STEP 1: CREATE DATABASE
 CREATE DATABASE MOVIESDB;
 USE MOVIESDB;
