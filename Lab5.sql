@@ -127,7 +127,7 @@ SELECT * FROM WORKS_ON;
 -- a. Make a list of all project numbers for projects that involve an employee whose last name is „Scott‟, either as a worker or as a manager of the department that controls the project.
 SELECT DISTINCT P.PNO 
 FROM PROJECT P, DEPARTMENT D, EMPLOYEE E 
-WHERE E.DNO=D.DNO AND D.MGR_SSN=E.SSN AND E.NAME LIKE '%SCOTT' 
+WHERE P.DNO=D.DNO AND D.MGR_SSN=E.SSN AND E.NAME LIKE '%SCOTT' 
 UNION 
 SELECT DISTINCT P1.PNO 
 FROM PROJECT P1, WORKS_ON W, EMPLOYEE E1 
