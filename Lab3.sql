@@ -119,7 +119,7 @@ AND ACT_ID IN (
     HAVING COUNT(ACT_ID) > 1
 ) 
 GROUP BY MOV_TITLE 
-HAVING COUNT(*) > 1;
+HAVING COUNT(*) >= 1;
 
 -- 3. List all actors who acted in a movie before 2000 and also in a movie after 2015 (use JOIN operation).
 SELECT ACT_NAME, MOV_TITLE, MOV_YEAR 
