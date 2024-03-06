@@ -9,7 +9,7 @@ IAMARKS (USN, Subcode, SSID, Test1, Test2, Test3, FinalIA)
 Write SQL queries to:
 a. List all the student details studying in fourth semester 'C' section.
 b. Compute the total number of male and female students in each semester and in each section.
-c. Create a view of Test1 marks of student USN '1BI15CS101' in all subjects.
+c. Create a view of Test1 marks of student USN '1BI15CS101' in all SUBJECTs.
 d. Calculate the FinalIA (average of best two test marks) and update the corresponding table for all students.
 e. Categorize students based on the following criterion:
     If FinalIA = 17 to 20 then CAT = 'Outstanding'
@@ -183,7 +183,7 @@ WHERE S.USN = C.USN AND SS.SSID = C.SSID
 GROUP BY SS.SEM, SS.SEC, S.GENDER 
 ORDER BY SEM;
 
--- c. Create a view of Test1 marks of student USN '1DT15CS101' in all subjects.
+-- c. Create a view of Test1 marks of student USN '1DT15CS101' in all SUBJECTs.
 CREATE VIEW TEST1_VIEW AS
 SELECT S.USN, S.SNAME, I.SUBCODE, I.TEST1
 FROM STUDENT S, IAMARKS I
@@ -238,16 +238,18 @@ CALL AVG_MARKS();
 --     If FinalIA = 12 to 16 then CAT = 'Average'
 --     If FinalIA < 12 then CAT = 'Weak'
 --     Give these details only for 8th semester A, B, and C section students.
-SELECT S.USN, S.SNAME, S.ADDRESS, S.PHONE, S.GENDER, IA.SUBCODE, 
+SELECT S.USN, S.SNAME, S.ADDRESS, S.PHONE, S.GENDER, IA.SUBCODE, SB.Title,
     (CASE 
         WHEN IA.FINALIA BETWEEN 17 AND 20 THEN 'OUTSTANDING' 
         WHEN IA.FINALIA BETWEEN 12 AND 16 THEN 'AVERAGE' 
         ELSE 'WEAK' 
     END) AS CAT 
-FROM STUDENT S, SEMSEC SS, IAMARKS IA, SUBJECT SUB 
+FROM STUDENT S, SEMSEC SS, IAMARKS IA, SUBJECT SB 
 WHERE S.USN = IA.USN 
-    AND SS.SSID = IA.SSID 
-    AND SUB.SUBCODE = IA.SUBCODE 
-    AND SUB.SEM = 8;
+AND IA.SUBCODE = SB.SUBCODE
+AND SS.SSID = IA.SSID
+AND SS.SEM = 8
+AND SS.SEC IN ('A', 'B', 'C');
+
 
 DROP DATABASE COLLEGEDB;
