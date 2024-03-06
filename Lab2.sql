@@ -85,7 +85,7 @@ HAVING GRADE > (SELECT AVG(GRADE) FROM CUSTOMER WHERE CITY = 'BANGALORE')
 -- 2. Find the name and numbers of all salesmen who had more than one customer.
 SELECT SALESMAN_ID, NAME
 FROM SALESMAN
-WHERE 1 < (SELECT COUNT(*) FROM CUSTOMER WHERE SALESMAN_ID = SALESMAN.SALESMAN_ID)
+WHERE (SELECT COUNT(*) FROM CUSTOMER WHERE SALESMAN_ID = SALESMAN.SALESMAN_ID) > 1
 ;
 
 -- 3. List all salesmen and indicate those who have and don’t have customers in their cities (Use UNION operation.)
