@@ -231,7 +231,17 @@ BEGIN
     SELECT * FROM IAMARKS;
 END //
 DELIMITER ;
-CALL AVG_MARKS();
+
+DELIMITER //
+CREATE PROCEDURE AVG_MARKS2()
+BEGIN
+    UPDATE IAMARKS
+    SET FINALIA = (TEST1 + TEST2 + TEST3 - LEAST(TEST1, TEST2, TEST3)) / 2
+    WHERE FINALIA IS NULL;
+    SELECT * FROM IAMARKS;
+END //
+DELIMITER ;
+CALL AVG_MARKS2();
 
 -- e. Categorize students based on the following criterion:
 --     If FinalIA = 17 to 20 then CAT = 'Outstanding'
