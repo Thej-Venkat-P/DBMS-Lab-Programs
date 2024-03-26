@@ -108,8 +108,10 @@ FROM BOOK;
 
 /* 4) Partition the BOOK table based on year of publication. Demonstrate its working with a simple query. */
 CREATE VIEW V_PUBLICATION AS
-SELECT PUB_YEAR
-FROM BOOK;
+SELECT PUB_YEAR, BOOK_ID, TITLE
+FROM BOOK
+GROUP BY PUB_YEAR, BOOK_ID
+ORDER BY PUB_YEAR, BOOK_ID;
 SELECT *
 FROM V_PUBLICATION;
 
