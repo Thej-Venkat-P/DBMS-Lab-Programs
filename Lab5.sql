@@ -153,7 +153,7 @@ WHERE NOT EXISTS(
     AND PNO NOT IN (
         SELECT PNO 
         FROM WORKS_ON 
-        WHERE E.SSN=SSN
+        WHERE SSN=E.SSN
     )
 ); 
 
